@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
 import numpy
-from PIL import ImageTk, Image
 
 #initialise GUI
 top=tk.Tk()
