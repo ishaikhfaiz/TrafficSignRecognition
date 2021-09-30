@@ -19,9 +19,9 @@ def classify(file_path):
     image = image.resize((50,50))
     image = numpy.expand_dims(image, axis=0)
     image = numpy.array(image)
-    pred = model.predict_classes([image])[0]
-    sign = classes[pred+1]
-    print(sign)
+    #pred = model.predict_classes([image])[0]
+    #sign = classes[pred+1]
+    #print(sign)
     label.configure(foreground='#011638', text=sign)
 
 def show_classify_button(file_path):
