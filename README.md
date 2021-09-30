@@ -4,4 +4,6 @@
 Mini-Project(2A) Under Development by Faiz Shaikh, Uzair Petiwala, Rahul Yadav, Huzaifa Siddiqui
 
 Guide: Mrs Nayna Dahatonde
+
+# Install Numpy, PILLOW & KERAS LIBRARY FOR GUI 
 >>>Commit
