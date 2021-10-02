@@ -6,7 +6,7 @@ from PIL import ImageTk, Image #for image reading
 from keras.models import load_model 
 
 # importing traffic_sign_recognition module
-model= load_model('./traffic_sign_test_recognition.h5')
+model= load_model('./traffic_classifier.h5')
 
 classes = { 0:'Speed limit (20km/h)',
             1:'Speed limit (30km/h)', 
@@ -50,7 +50,8 @@ classes = { 0:'Speed limit (20km/h)',
             39:'Keep left', 
             40:'Roundabout mandatory', 
             41:'End of no passing', 
-            42:'End no passing veh > 3.5 tons' }
+            42:'End no passing veh > 3.5 tons' 
+}
 
 #initialise GUI
 top=tk.Tk()
@@ -60,6 +61,7 @@ top.configure(background='black')
 
 label=Label(top,background='green', font=('Calibri',16,'italic'))
 sign_image = Label(top)
+
 # tkinter classes
 def classify(file_path):
     global label_packed
@@ -93,8 +95,6 @@ def upload_image():
         pass
 
 upload=Button(top,text="Upload an image",command=upload_image,padx=10,pady=5)
-# upload button
-upload=Button(top,text="Upload an image",command=upload_image,padx=13,pady=7)
 upload.configure(background='#00e6e6', foreground='#000000',font=('arial',15,'bold'))
 
 upload.pack(side=BOTTOM,pady=50)
