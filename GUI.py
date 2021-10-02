@@ -2,9 +2,10 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
 import numpy
-from PIL import ImageTk, Image
+from PIL import ImageTk, Image #for image reading
 
-from keras.models import load_model
+from keras.models import load_model # for image geometry changing
+# importing traffic_sign_recognition module
 model= load_model('./traffic_sign_test_recognition.h5')
 
 classes = { 0:'Speed limit (20km/h)',
@@ -75,7 +76,7 @@ def show_classify_button(file_path):
     classify_b=Button(top,text="Detect Sign",command=lambda: classify(file_path),padx=5,pady=9)
     classify_b.configure(background='#000fff', foreground='White',font=('arial',13,'bold'))
     classify_b.place(relx=0.79,rely=0.46)
-
+# taking path of image manually 
 def upload_image():
     try:
         file_path=filedialog.askopenfilename()
