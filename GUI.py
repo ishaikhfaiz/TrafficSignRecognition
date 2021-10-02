@@ -90,7 +90,7 @@ def upload_image():
         show_classify_button(file_path)
     except:
         pass
-
+# upload button
 upload=Button(top,text="Upload an image",command=upload_image,padx=13,pady=7)
 upload.configure(background='#00e6e6', foreground='#000000',font=('arial',15,'bold'))
 
