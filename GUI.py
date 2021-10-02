@@ -6,7 +6,7 @@ from PIL import ImageTk, Image #for image reading
 
 from keras.models import load_model # for image geometry changing
 # importing traffic_sign_recognition module
-model= load_model('./traffic_sign_test_recognition.h5')
+model= load_model('traffic_sign_test_recognition.h5')
 
 classes = { 0:'Speed limit (20km/h)',
             1:'Speed limit (30km/h)', 
@@ -54,7 +54,7 @@ classes = { 0:'Speed limit (20km/h)',
 
 #initialise GUI
 top=tk.Tk()
-top.geometry('800x800')
+top.geometry('800x600')
 top.title('Traffic sign Detection')
 top.configure(background='black')
 
@@ -64,7 +64,7 @@ sign_image = Label(top)
 def classify(file_path):
     global label_packed
     image = Image.open(file_path)
-    image = image.resize((50,50))
+    image = image.resize((30,30))
     image = numpy.expand_dims(image, axis=0)
     image = numpy.array(image)
     pred = model.predict_classes([image])[0]
@@ -73,7 +73,7 @@ def classify(file_path):
     label.configure(foreground='#011638', text=sign)
 
 def show_classify_button(file_path):
-    classify_b=Button(top,text="Detect Sign",command=lambda: classify(file_path),padx=5,pady=9)
+    classify_b=Button(top,text="Detect Sign",command=lambda: classify(file_path),padx=10,pady=5)
     classify_b.configure(background='#000fff', foreground='White',font=('arial',13,'bold'))
     classify_b.place(relx=0.79,rely=0.46)
 # taking path of image manually 
@@ -91,7 +91,7 @@ def upload_image():
     except:
         pass
 
-upload=Button(top,text="Upload an image",command=upload_image,padx=13,pady=7)
+upload=Button(top,text="Upload an image",command=upload_image,padx=10,pady=5)
 upload.configure(background='#00e6e6', foreground='#000000',font=('arial',15,'bold'))
 
 upload.pack(side=BOTTOM,pady=50)
