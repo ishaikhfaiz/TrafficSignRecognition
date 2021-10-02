@@ -59,7 +59,7 @@ top.configure(background='black')
 
 label=Label(top,background='green', font=('Calibri',16,'italic'))
 sign_image = Label(top)
-
+# tkinter classes
 def classify(file_path):
     global label_packed
     image = Image.open(file_path)
