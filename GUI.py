@@ -6,7 +6,7 @@ from PIL import ImageTk, Image #for image reading
 from keras.models import load_model 
 
 # importing traffic_sign_recognition module
-model= load_model('./traffic_classifier.h5')
+model= load_model('./traffic_sign_test_recognition.h5')
 
 classes = { 0:'Speed limit (20km/h)',
             1:'Speed limit (30km/h)', 
