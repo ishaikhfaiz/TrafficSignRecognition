@@ -101,7 +101,7 @@ upload.pack(side=BOTTOM,pady=50)
 sign_image.pack(side=BOTTOM,expand=True)
 label.pack(side=BOTTOM,expand=True)
 
-heading = Label(top, text="Traffic Sign Detection",padx=5, pady=20, font=('Calibri',20,'bold'))
+heading = Label(top, text="Traffic Sign Detection",padx=5, pady=20, font=('Calibri',20,'bold')) #GUI heading
 heading.configure(background='#ffff00',foreground='#364156')
 heading.pack()
 top.mainloop()
