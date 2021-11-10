@@ -55,7 +55,7 @@ classes = { 0:'Speed limit (20km/h)',
 
 #initialise GUI
 top=tk.Tk()
-top.geometry('800x600')
+top.geometry('800x600') # window size
 top.title('Traffic sign Detection')
 top.configure(background='black')
 
