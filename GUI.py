@@ -60,7 +60,7 @@ top.title('Traffic sign Detection')
 top.configure(background='black')
 
 label=Label(top,background='green', font=('Calibri',16,'italic'))
-sign_image = Label(top)
+sign_image = Label(top) # specification
 
 # tkinter classes
 def classify(file_path):
