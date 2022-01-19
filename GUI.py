@@ -95,6 +95,7 @@ def show_classify_button(file_path):
 def speech():
     myobj = gTTS(text=sign, lang="en")
     myobj.save("sign.mp3")
+    # for window operating system uncomment-> os.system("start /.sign.mp3")
     os.system("mpg321 ./sign.mp3")
 
 
