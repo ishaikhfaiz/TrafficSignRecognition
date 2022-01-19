@@ -4,6 +4,12 @@ from tkinter import *
 import numpy
 from PIL import ImageTk, Image #for image reading
 from keras.models import load_model 
+from gtts import gTTS
+import os
+import subprocess
+import threading
+import time
+
 
 # importing traffic_sign_recognition module
 model= load_model('./traffic_sign_train_recognition.h5')
@@ -60,7 +66,9 @@ top.title('Traffic sign Detection')
 top.configure(background='black')
 
 label=Label(top,background='green', font=('Calibri',16,'italic'))
-sign_image = Label(top) # specification
+sign_image = Label(top)
+sign=''
+
 
 # tkinter classes to add text to speech
 def classify(file_path):
@@ -70,15 +78,26 @@ def classify(file_path):
     image = numpy.expand_dims(image, axis=0)
     image = numpy.array(image)
     pred = numpy.argmax(model.predict([image])[0])
+    global sign
     sign = classes[pred+1]
     print(sign)
     label.configure(foreground='#011638', text=sign)
+    
 
 def show_classify_button(file_path):
-    classify_b=Button(top,text="Detect Sign",command=lambda: classify(file_path),padx=10,pady=5)
+    classify_b=Button(top,text="Detect Sign",command=lambda: [threading.Thread(target=classify(file_path)).start(),threading.Thread(target=speech()).start()], padx=10,pady=5)
     classify_b.configure(background='#000fff', foreground='White',font=('arial',13,'bold'))
     classify_b.place(relx=0.79,rely=0.46)
-
+    
+    
+    
+def speech():
+    myobj = gTTS(text=sign, lang="en")
+    myobj.save("sign.mp3")
+    os.system("mpg321 ./sign.mp3")
+    
+   
+   
 # taking path of image manually 
 def upload_image():
     try:
