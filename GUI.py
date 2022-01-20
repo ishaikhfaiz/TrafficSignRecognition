@@ -4,7 +4,7 @@ from tkinter import *
 import numpy
 from PIL import ImageTk, Image  # for image reading
 from keras.models import load_model
-from gtts import gTTS. #text to speech 
+from gtts import gTTS  #text to speech 
 import os              # operating system access
 import subprocess
 import threading
