@@ -4,8 +4,8 @@ from tkinter import *
 import numpy
 from PIL import ImageTk, Image  # for image reading
 from keras.models import load_model
-from gtts import gTTS
-import os
+from gtts import gTTS. #text to speech 
+import os              # operating system access
 import subprocess
 import threading
 import time
@@ -91,7 +91,7 @@ def show_classify_button(file_path):
                          foreground='White', font=('arial', 13, 'bold'))
     classify_b.place(relx=0.79, rely=0.46)
 
-
+# text to speech class
 def speech():
     myobj = gTTS(text=sign, lang="en")
     myobj.save("sign.mp3")
