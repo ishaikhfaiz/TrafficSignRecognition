@@ -85,10 +85,8 @@ def classify(file_path):
 
 
 def show_classify_button(file_path):
-    classify_b = Button(top, text="Detect Sign", command=lambda: [threading.Thread(
-        target=classify(file_path)).start(), threading.Thread(target=speech()).start()], padx=10, pady=5)
-    classify_b.configure(background='#000fff',
-                         foreground='White', font=('arial', 13, 'bold'))
+    classify_b = Button(top, text="Detect Sign", command=lambda: classify(file_path), padx=10, pady=5)
+    classify_b.configure(background='#000fff',foreground='White', font=('arial', 13, 'bold'))
     classify_b.place(relx=0.79, rely=0.46)
 
 # text to speech class
@@ -114,6 +112,11 @@ def upload_image():
         show_classify_button(file_path)
     except:
         pass
+
+# Button for Speech
+speech_b = Button(top, text='Speak', command=lambda: speech())
+speech_b.configure(background='#000fff',foreground='White', font=('arial', 13, 'bold'))
+speech_b.place(relx=0.815, rely=0.66)
 
 
 upload = Button(top, text="Upload an image",
