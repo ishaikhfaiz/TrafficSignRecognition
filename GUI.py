@@ -9,6 +9,12 @@ import os              # operating system access
 import subprocess
 import threading
 import time
+import pyttsx3 
+import speech_recognition as sr 
+import datetime
+import webbrowser
+import os
+from newsapi.newsapi_client import NewsApiClient
 
 
 # importing traffic_sign_recognition module
@@ -69,8 +75,65 @@ label = Label(top, background='green', font=('Calibri', 16, 'italic'))
 sign_image = Label(top)
 sign = ''
 
+# Voice Engine
+engine = pyttsx3.init("espeak")
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[11].id)
 
-# tkinter classes to add text to speech
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+# Take Input
+def takeCommand():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source,duration=1)
+        print("Listening...")
+        audio = r.listen(source)
+
+    try:
+        print("Recognizing...")    
+        query = r.recognize_google(audio, language='en-in')
+        print(f"User said: {query}\n")
+
+    except Exception as e:    
+        print("Say that again please...")  
+        return "None"
+    return query
+
+def news():
+    newsapi = NewsApiClient(api_key='5840b303fbf949c9985f0e1016fc1155')
+    speak("What topic you need the news about")
+    topic = takeCommand()
+    data = newsapi.get_top_headlines(
+        q=topic, language="en", page_size=5)
+    newsData = data["articles"]
+    for y in newsData:
+        speak(y["description"])
+
+def car_assistant():
+    while True:
+        query = takeCommand().lower()
+
+        if 'open gmail' in query:
+            webbrowser.open("gmail.com")   
+            break
+
+        elif 'play music' in query:
+            music_dir = '/home/shaikhfaiz'
+            os.system("rhythmbox-client --play")
+            break
+            
+        elif 'what is the time' in query:
+            strTime = datetime.datetime.now().strftime("%H:%M")    
+            speak(f"Sir, the time is {strTime}")
+            break
+
+        elif 'news' in query:
+            news()
+            break
+
 def classify(file_path):
     global label_packed
     image = Image.open(file_path)
@@ -117,6 +180,11 @@ def upload_image():
 speech_b = Button(top, text='Speak', command=lambda: speech())
 speech_b.configure(background='#000fff',foreground='White', font=('arial', 13, 'bold'))
 speech_b.place(relx=0.815, rely=0.66)
+
+# Button for Activating Assistant
+assist_b = Button(top, text='Tell Me', command=lambda: car_assistant())
+assist_b.configure(background='#000fff',foreground='White', font=('arial', 13, 'bold'))
+assist_b.place(relx=0.810, rely=0.76)
 
 
 upload = Button(top, text="Upload an image",
