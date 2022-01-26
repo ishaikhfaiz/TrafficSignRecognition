@@ -101,7 +101,7 @@ def takeCommand():
         print("Say that again please...")  
         return "None"
     return query
-
+# news api
 def news():
     newsapi = NewsApiClient(api_key='5840b303fbf949c9985f0e1016fc1155')
     speak("What topic you need the news about")
@@ -111,7 +111,7 @@ def news():
     newsData = data["articles"]
     for y in newsData:
         speak(y["description"])
-
+# command processing
 def car_assistant():
     while True:
         query = takeCommand().lower()
