@@ -76,11 +76,11 @@ sign_image = Label(top)
 sign = ''
 
 # Voice Engine
-engine = pyttsx3.init("espeak")
+engine = pyttsx3.init("espeak")         
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[11].id)
 
-def speak(audio):
+def speak(audio):         #Output Voice
     engine.say(audio)
     engine.runAndWait()
 
@@ -198,6 +198,6 @@ label.pack(side=BOTTOM, expand=True)
 
 heading = Label(top, text="Traffic Sign Detection", padx=5,
                 pady=20, font=('Calibri', 20, 'bold'))  # GUI heading
-heading.configure(background='#ffff00', foreground='#364156')
+heading.configure(background='#ffff00', foreground='#464156')
 heading.pack()
 top.mainloop()
