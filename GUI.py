@@ -2,19 +2,19 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
 import numpy
-from PIL import ImageTk, Image  # for image reading
+from PIL import ImageTk, Image                            # for image reading
 from keras.models import load_model
-from gtts import gTTS  #text to speech 
-import os              # operating system access
+from gtts import gTTS                                     #text to speech 
+import os                                                 # operating system access
 import subprocess
 import threading
 import time
 import pyttsx3 
-import speech_recognition as sr 
+import speech_recognition as sr                           #Speech Recognition
 import datetime
 import webbrowser
 import os
-from newsapi.newsapi_client import NewsApiClient
+from newsapi.newsapi_client import NewsApiClient          #Google News-Api
 
 
 # importing traffic_sign_recognition module
