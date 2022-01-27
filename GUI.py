@@ -134,7 +134,7 @@ def car_assistant():
             news()
             break
 
-def classify(file_path):
+def classify(file_path):                #Giving Image Input
     global label_packed
     image = Image.open(file_path)
     image = image.resize((30, 30))
@@ -153,7 +153,7 @@ def show_classify_button(file_path):
     classify_b.place(relx=0.79, rely=0.46)
 
 # text to speech class
-def speech():
+def speech():             # Output in form of Audio
     myobj = gTTS(text=sign, lang="en")
     myobj.save("sign.mp3")
     # for window operating system uncomment-> os.system("start /.sign.mp3")
