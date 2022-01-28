@@ -123,7 +123,26 @@ def car_assistant():
         elif 'play music' in query:
             music_dir = '/home/shaikhfaiz'
             os.system("rhythmbox-client --play")
+            
+        elif 'stop music' in query:
+            os.system("rhythmbox-client --stop")
             break
+     
+        elif 'Next Song' in query:
+            os.system("rhythmbox-client --next")
+        
+        elif 'previous Song' in query:
+            os.system("rhythmbox-client --previous")
+
+        elif 'Increase Volume' in query:
+            os.system("rhythmbox-client --volume-up")
+        
+        elif 'Decrease Volume' in query:
+            os.system("rhythmbox-client --volume-down")
+            print("rhythmbox-client --print-volume")
+        
+        elif 'Set Volume' in query:
+            os.system("rhythmbox-client --set-volume")
             
         elif 'what is the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M")    
