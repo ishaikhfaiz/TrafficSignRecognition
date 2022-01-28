@@ -154,7 +154,47 @@ def car_assistant():
             news()
             break
 
+def classify(file_path):                #Giving Image Input
+    global label_packed
+    image = Image.open(file_path)
+    image = image.resize((30, 30))
+    image = numpy.expand_dims(image, axis=0)
+    image = numpy.array(image)
+    pred = numpy.argmax(model.predict([image])[0])
+    global sign
+    sign = classes[pred+1]
+    print(sign)
+    label.configure(foreground='#011638', text=sign)
 
+
+def show_classify_button(file_path):
+    classify_b = Button(top, text="Detect Sign", command=lambda: classify(file_path), padx=10, pady=5)
+    classify_b.configure(background='#000fff',foreground='White', font=('arial', 13, 'bold'))
+    classify_b.place(relx=0.79, rely=0.46)
+
+# text to speech class
+def speech():             # Output in form of Audio
+    myobj = gTTS(text=sign, lang="en")
+    myobj.save("sign.mp3")
+    # for window operating system uncomment-> os.system("start /.sign.mp3")
+    os.system("mpg321 ./sign.mp3")
+
+
+# taking path of image manually
+def upload_image():
+    try:
+        file_path = filedialog.askopenfilename()
+        uploaded = Image.open(file_path)
+        uploaded.thumbnail(
+            ((top.winfo_width()/2.25), (top.winfo_height()/2.25)))
+        im = ImageTk.PhotoImage(uploaded)
+
+        sign_image.configure(image=im)
+        sign_image.image = im
+        label.configure(text='')
+        show_classify_button(file_path)
+    except:
+        pass
 
 # Button for Speech
 speech_b = Button(top, text='Speak', command=lambda: speech())
