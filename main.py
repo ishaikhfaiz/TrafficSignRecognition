@@ -146,7 +146,17 @@ print("X_valid.shape", X_val.shape)
 print("y_train.shape", y_train.shape)
 print("y_valid.shape", y_val.shape)
 
+model = keras.models.Sequential([
 
+    keras.layers.Conv2D(filters=16, kernel_size=(3, 3), activation='relu',
+
+                        input_shape=(IMG_HEIGHT, IMG_WIDTH, channels)),
+
+    keras.layers.Conv2D(filters=32, kernel_size=(3, 3), activation='relu'),
+
+    keras.layers.MaxPool2D(pool_size=(2, 2)),
+
+    keras.layers.BatchNormalization(axis=-1),
 
     keras.layers.Conv2D(filters=64, kernel_size=(3, 3), activation='relu'),
     keras.layers.Conv2D(filters=128, kernel_size=(3, 3), activation='relu'),
