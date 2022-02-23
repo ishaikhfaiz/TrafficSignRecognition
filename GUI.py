@@ -180,7 +180,7 @@ def classify(file_path):
     image = numpy.array(image)
     pred = numpy.argmax(model.predict([image])[0])
     global sign
-    sign = classes[pred+1]
+    sign = classes[pred]
     print(sign)
     label.configure(font=('Yusei Magic', 17, 'bold'),
                     text=sign, anchor="center")
@@ -193,7 +193,7 @@ def upload_image():
         file_path = filedialog.askopenfilename()
         uploaded = Image.open(file_path)
         uploaded.thumbnail((500, 500))
-       # uploaded.resize((1000, 1000), Image.ANTIALIAS)
+        #uploaded.resize((1000, 1000), Image.ANTIALIAS)
         im = ImageTk.PhotoImage(uploaded)
         sign_image.configure(image=im)
         sign_image.image = im
