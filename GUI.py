@@ -179,7 +179,7 @@ def classify(file_path):
     image = image.resize((30, 30))
     image = numpy.expand_dims(image, axis=0)
     image = numpy.array(image)
-    pred = numpy.argmax(model.predict([image])[0])
+    pred = numpy.argmax(model.predict([image])[0])     # images selection
     global sign
     sign = classes[pred]
     print(sign)
