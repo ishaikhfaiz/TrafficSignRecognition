@@ -239,4 +239,3 @@ heading = Label(top, text="TRAFFIC SIGN DETECTION USING MACHINE LEARNING", wrapl
 heading.configure(background='black', foreground='#FEC80A')
 heading.pack()
 top.mainloop()
-#GUI updated
