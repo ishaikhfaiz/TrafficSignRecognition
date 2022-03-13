@@ -65,6 +65,7 @@ classes = {0: 'Speed limit (20km/h)',
            42: 'End no passing veh > 3.5 tons'
            }
 
+# 26, 33, 35, 38, 39, 40 + 5 = 11 = 74% Accuracy
 # initialise GUI
 top = tk.Tk()
 top.geometry('800x600')  # window size
