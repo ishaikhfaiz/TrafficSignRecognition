@@ -171,53 +171,7 @@ model = keras.models.Sequential([
     keras.layers.Dense(43, activation='softmax')
 ])
 
-lr = 0.001
-epochs = 30
-
-opt = Adam(lr=lr, decay=lr / (epochs * 0.5))
-model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
-
-aug = ImageDataGenerator(
-    rotation_range=10,
-    zoom_range=0.15,
-    width_shift_range=0.1,
-    height_shift_range=0.1,
-    shear_range=0.15,
-    horizontal_flip=False,
-    vertical_flip=False,
-    fill_mode="nearest")
-
-history = model.fit(aug.flow(X_train, y_train, batch_size=32), epochs=epochs, validation_data=(X_val, y_val))
-
-model.save('traffic_sign_f_recognition.h5')
-pd.DataFrame(history.history).plot(figsize=(8, 5))
-plt.grid(True)
-plt.gca().set_ylim(0, 1)
-plt.show()
-
-test = pd.read_csv(data_dir + '/Test.csv')
-
-labels = test["ClassId"].values
-imgs = test["Path"].values
-
-data =[]
-
-for img in imgs:
-    try:
-        image = cv2.imread(data_dir + '/' +img)
-        image_fromarray = Image.fromarray(image, 'RGB')
-        resize_image = image_fromarray.resize((IMG_HEIGHT, IMG_WIDTH))
-        data.append(np.array(resize_image))
-    except:
-        print("Error in " + img)
-X_test = np.array(data)
-X_test = X_test/255
-
-pred = model.predict_classes(X_test)
-
-#Accuracy with the test data
-print('Test Data accuracy: ',accuracy_score(labels, pred)*100)
-from sklearn.metrics import confusion_matrix
+\
 cf = confusion_matrix(labels, pred)
 import seaborn as sns
 df_cm = pd.DataFrame(cf, index = classes,  columns = classes)
